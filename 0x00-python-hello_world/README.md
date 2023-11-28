@@ -1,2 +1,1 @@
-# alx-higher_level_programming
-repo created for higher level programming
+# Python Hello world and C interview prep
