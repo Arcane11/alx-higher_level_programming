@@ -1,23 +1,32 @@
 #!/usr/bin/python3
+"""
+Module 2-matrix_divided
+Contain one mthod that divided the element of
+The same size of int or float matrix
+Return the dividened number rouneded to two decimal place
+"""
+
+
 def matrix_divided(matrix, div):
-    errorMessage = "matrix must be a matrix (list of lists) of integers/floats"
-    if not matrix:
-        raise TypeError(errorMessage)
-    if not isinstance(matrix, list):
-        raise TypeError(errorMessage)
-    for lists in matrix:
-        if not isinstance(lists, list):
-            raise TypeError(errorMessage)
-        for item in lists:
-            if not isinstance(item, int) and not isinstance(item, float):
-                raise TypeError(errorMessage)
-    for lists in matrix:
-        if len(lists) == 0:
-            raise TypeError(errorMessage)
-    if not isinstance(div, int) and not isinstance(div, float):
+    """Return new matrix with dividened"""
+
+    message = "matrix must be a matrix (list of lists) of integers/floats"
+    message_one = "Each row of the matrix must have the same size"
+
+    if type(matrix) is not list or len(matrix) == 0 or len(matrix[0]) == 0:
+        raise TypeError(message)
+    for rows in matrix:
+        if type(rows) is not list:
+            raise TypeError(message)
+        for i in rows:
+            if type(i) is not int and type(i) is not float:
+                raise TypeError(message)
+    samelen = len(matrix[0])
+    for row in matrix:
+        if samelen != len(row):
+            raise TypeError(message_one)
+    if type(div) is not int and type(div) is not float:
         raise TypeError("div must be a number")
-    if not all(len(lists) == len(matrix[0]) for lists in matrix):
-        raise TypeError("Each row of the matrix must have the same size")
     if div == 0:
         raise ZeroDivisionError("division by zero")
-    return [[round(item / div, 2) for item in lists] for lists in matrix]
+    return [[round(i / div, 2) for i in rows] for rows in matrix]
